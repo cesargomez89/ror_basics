@@ -10,5 +10,13 @@
       <% end %>
       <p><%= comment.content %></p>
     </div>
+    <p><%= comment.likes.count %></p>
+    <% if user_signed_in? %>
+      <% if user_liked?(comment) %>
+        <%= button_to("Remove like", like_path(find_user_like(comment)), method: :delete)%>
+      <% else%>
+        <%= button_to("Like", likes_path, method: :post, params: { likable_id: comment.id, likable_type: 'Comment', user_id: current_user.id }) %>
+      <% end %>
+    <% end %>
   </div>
 <% end %>

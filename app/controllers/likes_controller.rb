@@ -7,6 +7,7 @@ class LikesController < ApplicationController
     if @like.save
       redirect_back fallback_location: root_path
     else
+      flash[:alert] = "Oye, ya le diste like"
       redirect_back fallback_location: root_path
     end
   end
