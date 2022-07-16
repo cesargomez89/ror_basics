@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
+    binding.break
     @posts = Post.all
   end
 
