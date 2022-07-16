@@ -1,9 +1,18 @@
 <div class="post-card">
-  <p>
-    <strong>Title:</strong>
-    <%= post.title %>
-  </p>
-  <p>
+  <div class="post-card-header">
+    <p>
+      <strong>Title:</strong>
+      <%= post.title %>
+    </p>
+
+    <div>
+      <% if !post.user %>
+        Anónimo
+      <% else %>
+        <%= post.user.display_name %>
+      <%end %>
+    </div>
+  </div>
     <strong>Content:</strong>
     <%= post.content %>
   </p>
