@@ -5,6 +5,15 @@ class LikesController < ApplicationController
     @like = Like.new(like_params)
 
     if @like.save
+      resource = params[:likable_type].constantize.find(params[:likable_id])
+
+      if resource.user
+        NotificationsMailer.with(
+          resource: resource,
+          notifier: current_user
+        ).notify_resource_liked.deliver
+      end
+
       redirect_back fallback_location: root_path
     else
       flash[:alert] = "Oye, ya le diste like"

@@ -6,7 +6,14 @@ class CommentsController < ApplicationController
     comment = @post.comments.new(comment_params)
 
     if comment.save
-      flash[:notice] = 'Post created!'
+      if @post.user.present?
+        NotificationsMailer.with(
+          user: @post.user,
+          comment: comment,
+          notifier: current_user
+        ).notify_comment_created.deliver
+      end
+      flash[:notice] = 'Comment created!'
     else
       flash[:alert] = 'Error creating post!'
     end
