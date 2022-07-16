@@ -4,7 +4,6 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    binding.break
     @posts = Post.all
   end
 
@@ -23,7 +22,7 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
