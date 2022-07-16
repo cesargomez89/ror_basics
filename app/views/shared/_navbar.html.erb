@@ -1,0 +1,10 @@
+<nav>
+  <%= link_to("Posts", root_path) %>
+  <% if user_signed_in? %>
+    <strong><%= current_user.display_name %></strong>
+    <%= button_to("Cerrar sesion", destroy_user_session_path, method: :delete ) %>
+  <% else %>
+    <%= link_to("Iniciar sesion", new_user_session_path) %>
+  <% end %>
+</nav>
+
