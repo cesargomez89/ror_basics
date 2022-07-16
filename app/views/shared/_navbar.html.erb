@@ -4,6 +4,6 @@
     <%= current_user.display_name %>
     <%= button_to "Log out", destroy_user_session_path, method: :delete, class: 'actions'  %>
   <% else %>
-    <%= button_to "Sign in", new_user_session_path, class: 'actions'  %>
+    <%= button_to "Sign in", new_user_session_path, method: :get, class: 'actions'  %>
   <% end %>
 </nav>
