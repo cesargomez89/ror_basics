@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
   before_action :set_post
+  before_action :authenticate_user!, only: %[ create ]
 
   def create
     comment = @post.comments.new(comment_params)
+
     if comment.save
       flash[:notice] = 'Post created!'
     else
@@ -14,7 +16,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content).merge(user_id: current_user.id)
   end
 
   def set_post
