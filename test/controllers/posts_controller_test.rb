@@ -1,8 +1,13 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+  fixtures %i[posts]
+
   setup do
+    @email = 'cesar@test'
+    @user = User.create(email: @email, password: 'abc123')
     @post = posts(:one)
+    sign_in @user
   end
 
   test "should get index" do
