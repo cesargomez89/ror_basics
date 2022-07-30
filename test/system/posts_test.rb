@@ -4,17 +4,17 @@ require 'application_system_test_case'
 
 # system test for posts
 class PostsTest < ApplicationSystemTestCase
-  setup do
-    @post = posts(:one)
-  end
+  fixtures :posts
 
-  test 'visiting the index' do
-    visit posts_url
-    assert_selector 'h1', text: 'Posts'
+  setup do
+    @user = User.create(email: 'juve@test.com', password: 'abc123')
+    @post = posts(:one)
+    login @user
   end
 
   test 'should create post' do
     visit posts_url
+    assert_selector 'h1', text: 'Posts'
     click_on 'New post'
 
     fill_in 'Title', with: @post.title

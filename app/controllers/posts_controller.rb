@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   include Pagy::Backend
 
   before_action :set_post, only: %i[show edit update destroy]
-  before_action :authenticate_user!, only: %i[new create update destroy]
+  before_action :authenticate_user!, only: %i[new create update destroy index]
 
   Pagy::DEFAULT[:items] = 2
 
