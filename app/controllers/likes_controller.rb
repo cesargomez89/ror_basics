@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :authenticate_user!
 
@@ -14,11 +16,10 @@ class LikesController < ApplicationController
         ).notify_resource_liked.deliver
       end
 
-      redirect_back fallback_location: root_path
     else
-      flash[:alert] = "Oye, ya le diste like"
-      redirect_back fallback_location: root_path
+      flash[:alert] = 'Oye, ya le diste like'
     end
+    redirect_back fallback_location: root_path
   end
 
   def destroy

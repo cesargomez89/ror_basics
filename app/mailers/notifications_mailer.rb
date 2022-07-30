@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationsMailer < ApplicationMailer
   def notify_comment_created
     @user = params[:user]

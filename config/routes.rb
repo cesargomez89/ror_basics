@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  root to: "posts#index"
+  root to: 'posts#index'
 
-  resources :likes, only: [:create, :destroy]
+  resources :likes, only: %i[create destroy]
 
   resources :posts do
     resources :comments

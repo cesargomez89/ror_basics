@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_post
-  before_action :authenticate_user!, only: [ :create ]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     comment = @post.comments.new(comment_params)

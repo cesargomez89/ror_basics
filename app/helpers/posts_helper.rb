@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PostsHelper
   def user_liked?(resource)
     Like.where(user_id: current_user.id, likable: resource).any?

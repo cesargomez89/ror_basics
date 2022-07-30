@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Comment < ApplicationRecord
   belongs_to :post
-  validates_presence_of :content
+  validates :content, presence: true
 
   has_many :likes, as: :likable
 
