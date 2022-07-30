@@ -9,11 +9,11 @@ class CommentsController < ApplicationController
 
     if comment.save
       if @post.user.present?
-        NotificationsMailer.with(
-          user: @post.user,
-          comment: comment,
-          notifier: current_user
-        ).notify_comment_created.deliver
+        NotificationsJob.perform_later(
+          @post.user_id,
+          comment.id,
+          current_user.id
+        )
       end
       flash[:notice] = 'Comment created!'
     else
