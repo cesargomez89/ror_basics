@@ -7,3 +7,5 @@
 user:
   email: cesar@test.com
   encrypted_password: test123
+  first_name: Cesar
+  last_name: Gomez
