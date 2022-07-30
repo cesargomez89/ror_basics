@@ -24,11 +24,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create post' do
-    assert_difference('Post.count') do
-      post posts_url, params: { post: { title: @post.title } }
-    end
-
+    post posts_url, params: { post: { title: @post.title } }
     assert_redirected_to post_url(Post.last)
+  end
+
+  test 'should not create post' do
+    post posts_url, params: { post: { title: nil } }
+    assert_equal response.status, 422
   end
 
   test 'should show post' do
